@@ -1503,36 +1503,6 @@ static void xpad_stop_input(struct usb_xpad *xpad)
 	usb_kill_urb(xpad->irq_in);
 }
 
-static void xpad360w_poweroff_controller(struct usb_xpad *xpad)
-{
-	unsigned long flags;
-	struct xpad_output_packet *packet =
-			&xpad->out_packets[XPAD_OUT_CMD_IDX];
-
-	spin_lock_irqsave(&xpad->odata_lock, flags);
-
-	packet->data[0] = 0x00;
-	packet->data[1] = 0x00;
-	packet->data[2] = 0x08;
-	packet->data[3] = 0xC0;
-	packet->data[4] = 0x00;
-	packet->data[5] = 0x00;
-	packet->data[6] = 0x00;
-	packet->data[7] = 0x00;
-	packet->data[8] = 0x00;
-	packet->data[9] = 0x00;
-	packet->data[10] = 0x00;
-	packet->data[11] = 0x00;
-	packet->len = 12;
-	packet->pending = true;
-
-	/* Reset the sequence so we send out poweroff now */
-	xpad->last_out_packet = -1;
-	xpad_try_sending_next_out_packet(xpad);
-
-	spin_unlock_irqrestore(&xpad->odata_lock, flags);
-}
-
 static int xpad360w_start_input(struct usb_xpad *xpad)
 {
 	int error;
@@ -1643,6 +1613,8 @@ static int xpad_init_input(struct usb_xpad *xpad)
 		input_dev->open = xpad_open;
 		input_dev->close = xpad_close;
 	}
+
+	__set_bit(EV_KEY, input_dev->evbit);
 
 	if (!(xpad->mapping & MAP_STICKS_TO_NULL)) {
 		/* set up axes */
@@ -1896,15 +1868,6 @@ static int xpad_suspend(struct usb_interface *intf, pm_message_t message)
 		 * or goes away.
 		 */
 		xpad360w_stop_input(xpad);
-
-		/*
-		 * The wireless adapter is going off now, so the
-		 * gamepads are going to become disconnected.
-		 * Unless explicitly disabled, power them down
-		 * so they don't just sit there flashing.
-		 */
-		if (auto_poweroff && xpad->pad_present)
-			xpad360w_poweroff_controller(xpad);
 	} else {
 		mutex_lock(&input->mutex);
 		if (input->users)
@@ -1927,16 +1890,8 @@ static int xpad_resume(struct usb_interface *intf)
 		retval = xpad360w_start_input(xpad);
 	} else {
 		mutex_lock(&input->mutex);
-		if (input->users) {
+		if (input->users)
 			retval = xpad_start_input(xpad);
-		} else if (xpad->xtype == XTYPE_XBOXONE) {
-			/*
-			 * Even if there are no users, we'll send Xbox One pads
-			 * the startup sequence so they don't sit there and
-			 * blink until somebody opens the input device again.
-			 */
-			retval = xpad_start_xbox_one(xpad);
-		}
 		mutex_unlock(&input->mutex);
 	}
 
