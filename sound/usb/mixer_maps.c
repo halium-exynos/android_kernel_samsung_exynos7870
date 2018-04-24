@@ -355,6 +355,11 @@ static struct usbmix_name_map dragonfly_1_2_map[] = {
  * screwed up when zero volume is passed; just skip it as a workaround
  */
 static const struct usbmix_name_map dell_alc4020_map[] = {
+ *
+ * Also the extension unit gives an access error, so skip it as well.
+ */
+static const struct usbmix_name_map dell_alc4020_map[] = {
+	{ 4, NULL },	/* extension unit */
 	{ 16, NULL },
 	{ 19, NULL },
 	{ 0 }
