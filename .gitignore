@@ -99,6 +99,12 @@ all.config
 arch/arm64/kernel/vdso/vdso-offsets.h
 arch/arm64/kernel/vdso/vdso.lds
 arch/arm64/kernel/vmlinux.lds
+crypto/asymmetric_keys/pkcs7-asn1.c
+crypto/asymmetric_keys/pkcs7-asn1.h
+crypto/asymmetric_keys/x509-asn1.c
+crypto/asymmetric_keys/x509-asn1.h
+crypto/asymmetric_keys/x509_rsakey-asn1.c
+crypto/asymmetric_keys/x509_rsakey-asn1.h
 firmware/gnss_firmware.bin.gen.S
 firmware/melfas_tk/mhs204g_on7xlte.fw
 firmware/melfas_tk/mhs204g_on7xlte.fw.gen.S
@@ -111,10 +117,13 @@ firmware/tsp_synaptics/td4310_on7xelte.fw.gen.S
 firmware/tsp_synaptics/td4310_on7xelte_recovery.fw
 firmware/tsp_synaptics/td4310_on7xelte_recovery.fw.gen.S
 kernel/config_data.h
+kernel/x509_certificate_list
 kernel/time/hz.bc
 kernel/time/timeconst.h
 lib/crc32table.h
+lib/oid_registry_data.c
 lib/gen_crc32table
+scripts/asn1_compiler
 scripts/basic/bin2c
 scripts/basic/fixdep
 scripts/dtc/dtc
