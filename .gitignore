@@ -105,7 +105,6 @@ crypto/asymmetric_keys/x509-asn1.c
 crypto/asymmetric_keys/x509-asn1.h
 crypto/asymmetric_keys/x509_rsakey-asn1.c
 crypto/asymmetric_keys/x509_rsakey-asn1.h
-firmware/gnss_firmware.bin.gen.S
 firmware/melfas_tk/mhs204g_on7xlte.fw
 firmware/melfas_tk/mhs204g_on7xlte.fw.gen.S
 firmware/tsp_synaptics/td4300_on7xelte.fw
