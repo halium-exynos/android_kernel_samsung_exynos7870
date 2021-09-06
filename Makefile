@@ -4,6 +4,10 @@ SUBLEVEL = 138
 EXTRAVERSION =
 NAME = Shuffling Zombie Juror
 
+# Samsung
+export ANDROID_MAJOR_VERSION=p
+export PLATFORM_VERSION=9.0.0
+
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
 # More info can be located in ./README
