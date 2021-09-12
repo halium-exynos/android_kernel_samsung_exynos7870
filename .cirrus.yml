@@ -27,5 +27,4 @@ task:
     - mkdir -p ~/.config/rclone
     - echo "$rclone_conf" > ~/.config/rclone/rclone.conf
     - cd /tmp/ci/kernel/Helios/Out
-    - rclone copy *.img drive:Share/halium/on7xelte/
-    - rclone copy *.zip drive:Share/halium/on7xelte/
+    - rclone copy halium-*-ubports-G610X-Treble.img drive:Share/halium/on7xelte/

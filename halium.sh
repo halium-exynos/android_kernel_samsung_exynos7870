@@ -44,7 +44,7 @@ CR_PLATFORM=9.0.0
 # Target ARCH
 CR_ARCH=arm64
 # Current Date
-CR_DATE=$(date +%Y%m%d)
+CR_DATE=ubports
 # Init build
 export CROSS_COMPILE=$CR_TC
 # General init
