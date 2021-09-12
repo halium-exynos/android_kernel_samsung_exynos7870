@@ -73,11 +73,11 @@ CR_CONFG_J710X=j7xelte_defconfig
 CR_VARIANT_J710X=J710X
 # Device specific Variables [SM-J701X]
 CR_DTSFILES_J701X="exynos7870-j7velte_sea_open_00.dtb exynos7870-j7velte_sea_open_01.dtb exynos7870-j7velte_sea_open_03.dtb"
-CR_CONFG_J701X=j7veltesea_defconfig
+CR_CONFG_J701X=j7velte_defconfig
 CR_VARIANT_J701X=J701X
 # Device specific Variables [SM-G610X]
 CR_DTSFILES_G610X="exynos7870-on7xelte_swa_open_00.dtb exynos7870-on7xelte_swa_open_01.dtb exynos7870-on7xelte_swa_open_02.dtb"
-CR_CONFG_G610X=on7xelteswa_defconfig
+CR_CONFG_G610X=on7xelte_defconfig
 CR_VARIANT_G610X=G610X
 # Device specific Variables [SM-J600X]
 CR_DTSFILES_J600X="exynos7870-j6lte_ltn_00.dtb exynos7870-j6lte_ltn_02.dtb"
