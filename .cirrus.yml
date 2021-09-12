@@ -1,0 +1,31 @@
+env:
+    CIRRUS_CLONE_DEPTH: 1
+    CIRRUS_WORKING_DIR: "/tmp/ci"
+
+    rclone_conf: "ENCRYPTED[98a7ba4250d7a549045f7511c564ddaa5d6cd3e65afb944236080e6bdf8d316249ff63c29388a2df171fa02472e6504f]"
+
+task:
+  name: master
+  timeout_in: 2h
+  only_if: $CIRRUS_REPO_OWNER == 'halium-exynos'
+  container:
+    image: dopaemon/bionic:latest
+    cpu: 4
+    memory: 8G
+
+  Install_Packages_Ubuntu_script:
+    - rm -rf *
+    - sudo apt-get update
+    - sudo apt-get install -y rclone git-lfs bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+  Git_Clone_From_Github_script:
+    - git clone -b master --single-branch https://github.com/archie9211/linaro.git gcc
+    - git clone -b halium-9.0 --single-branch https://github.com/halium-exynos/android_kernel_samsung_exynos7870.git kernel
+  Compile_Kernel_Treble_script:
+    - cd /tmp/ci/kernel
+    - ./halium.sh
+  Upload_Treble_Google_Drive_script:
+    - mkdir -p ~/.config/rclone
+    - echo "$rclone_conf" > ~/.config/rclone/rclone.conf
+    - cd /tmp/ci/kernel/Helios/Out
+    - rclone copy *.img drive:Share/halium/on7xelte/
+    - rclone copy *.zip drive:Share/halium/on7xelte/
