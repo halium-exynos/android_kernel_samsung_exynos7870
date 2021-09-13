@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Cronos Build Script V3.2
+# halium exynos7870 script
 # For Exynos7870
 # Coded by BlackMesa/AnanJaser1211 @2019
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ CR_PLATFORM=9.0.0
 # Target ARCH
 CR_ARCH=arm64
 # Current Date
-CR_DATE=ubports
+CR_DATE=dopaemon
 # Init build
 export CROSS_COMPILE=$CR_TC
 # General init
@@ -175,9 +175,70 @@ PACK_TREBLE_IMG()
 	$CR_AIK/cleanup.sh
 }
 # Main Menu
-clear
 echo "----------------------------------------------"
 echo "$CR_NAME $CR_VERSION Build Script"
+echo "----------------------------------------------"
+echo "Starting $CR_VARIANT_J530X kernel build..."
+CR_VARIANT=$CR_VARIANT_J530X
+CR_CONFG=$CR_CONFG_J530X
+CR_DTSFILES=$CR_DTSFILES_J530X
+BUILD_ZIMAGE
+BUILD_DTB
+PACK_PORT_IMG
+echo " "
+echo "----------------------------------------------"
+echo "$CR_VARIANT kernel build finished."
+echo "Compiled DTB Size = $sizdT Kb"
+echo "Kernel Image Size = $sizT Kb"
+echo "Boot Image   Size = $sizkT Kb"
+echo "$CR_OUT/$CR_NAME-$CR_VERSION-$CR_DATE-$CR_VARIANT-Treble.img Ready"
+echo "----------------------------------------------"
+echo "Starting $CR_VARIANT_J730X kernel build..."
+CR_VARIANT=$CR_VARIANT_J730X
+CR_CONFG=$CR_CONFG_J730X
+CR_DTSFILES=$CR_DTSFILES_J730X
+BUILD_ZIMAGE
+BUILD_DTB
+PACK_PORT_IMG
+echo " "
+echo "----------------------------------------------"
+echo "$CR_VARIANT kernel build finished."
+echo "Compiled DTB Size = $sizdT Kb"
+echo "Kernel Image Size = $sizT Kb"
+echo "Boot Image   Size = $sizkT Kb"
+echo "$CR_OUT/$CR_NAME-$CR_VERSION-$CR_DATE-$CR_VARIANT-Treble.img Ready"
+echo "----------------------------------------------"
+echo "Starting $CR_VARIANT_J710X kernel build..."
+CR_VARIANT=$CR_VARIANT_J710X
+export ANDROID_MAJOR_VERSION=$CR_ANDROID_J710X
+export PLATFORM_VERSION=$CR_PLATFORM_J710X
+CR_CONFG=$CR_CONFG_J710X
+CR_DTSFILES=$CR_DTSFILES_J710X
+BUILD_ZIMAGE
+BUILD_DTB
+PACK_PORT_IMG
+echo " "
+echo "----------------------------------------------"
+echo "$CR_VARIANT kernel build finished."
+echo "Compiled DTB Size = $sizdT Kb"
+echo "Kernel Image Size = $sizT Kb"
+echo "Boot Image   Size = $sizkT Kb"
+echo "$CR_OUT/$CR_NAME-$CR_VERSION-$CR_DATE-$CR_VARIANT-Treble.img Ready"
+echo "----------------------------------------------"
+echo "Starting $CR_VARIANT_J701X kernel build..."
+CR_VARIANT=$CR_VARIANT_J701X
+CR_CONFG=$CR_CONFG_J701X
+CR_DTSFILES=$CR_DTSFILES_J701X
+BUILD_ZIMAGE
+BUILD_DTB
+PACK_PORT_IMG
+echo " "
+echo "----------------------------------------------"
+echo "$CR_VARIANT kernel build finished."
+echo "Compiled DTB Size = $sizdT Kb"
+echo "Kernel Image Size = $sizT Kb"
+echo "Boot Image   Size = $sizkT Kb"
+echo "$CR_OUT/$CR_NAME-$CR_VERSION-$CR_DATE-$CR_VARIANT-Treble.img Ready"
 echo "----------------------------------------------"
 echo "Starting $CR_VARIANT_G610X kernel build..."
 CR_VARIANT=$CR_VARIANT_G610X
@@ -186,6 +247,40 @@ CR_DTSFILES=$CR_DTSFILES_G610X
 BUILD_ZIMAGE
 BUILD_DTB
 PACK_PORT_IMG
+echo " "
+echo "----------------------------------------------"
+echo "$CR_VARIANT kernel build finished."
+echo "Compiled DTB Size = $sizdT Kb"
+echo "Kernel Image Size = $sizT Kb"
+echo "Boot Image   Size = $sizkT Kb"
+echo "$CR_OUT/$CR_NAME-$CR_VERSION-$CR_DATE-$CR_VARIANT-Treble.img Ready"
+echo "----------------------------------------------"
+echo "Starting $CR_VARIANT_J600X kernel build..."
+CR_VARIANT=$CR_VARIANT_J600X
+CR_CONFG=$CR_CONFG_J600X
+CR_DTSFILES=$CR_DTSFILES_J600X
+export ANDROID_MAJOR_VERSION=$CR_ANDROID
+export PLATFORM_VERSION=$CR_PLATFORM
+BUILD_ZIMAGE
+BUILD_DTB
+PACK_TREBLE_IMG
+echo " "
+echo "----------------------------------------------"
+echo "$CR_VARIANT kernel build finished."
+echo "Compiled DTB Size = $sizdT Kb"
+echo "Kernel Image Size = $sizT Kb"
+echo "Boot Image   Size = $sizkT Kb"
+echo "$CR_OUT/$CR_NAME-$CR_VERSION-$CR_DATE-$CR_VARIANT-Treble.img Ready"
+echo "----------------------------------------------"
+echo "Starting $CR_VARIANT_A600X kernel build..."
+CR_VARIANT=$CR_VARIANT_A600X
+CR_CONFG=$CR_CONFG_A600X
+CR_DTSFILES=$CR_DTSFILES_A600X
+export ANDROID_MAJOR_VERSION=$CR_ANDROID
+export PLATFORM_VERSION=$CR_PLATFORM
+BUILD_ZIMAGE
+BUILD_DTB
+PACK_TREBLE_IMG
 echo " "
 echo "----------------------------------------------"
 echo "$CR_VARIANT kernel build finished."

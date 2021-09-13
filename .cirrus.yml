@@ -27,4 +27,10 @@ task:
     - mkdir -p ~/.config/rclone
     - echo "$rclone_conf" > ~/.config/rclone/rclone.conf
     - cd /tmp/ci/kernel/Helios/Out
-    - rclone copy halium-*-ubports-G610X-Treble.img drive:Share/halium/on7xelte/
+    - rclone copy halium-*-dopaemon-G610X-Treble.img drive:Share/halium/exynos7870/
+    - rclone copy halium-*-dopaemon-J530X-Treble.img drive:Share/halium/exynos7870/
+    - rclone copy halium-*-dopaemon-J730X-Treble.img drive:Share/halium/exynos7870/
+    - rclone copy halium-*-dopaemon-J710X-Treble.img drive:Share/halium/exynos7870/
+    - rclone copy halium-*-dopaemon-J701X-Treble.img drive:Share/halium/exynos7870/
+    - rclone copy halium-*-dopaemon-A600X-Treble.img drive:Share/halium/exynos7870/
+    - rclone copy halium-*-dopaemon-J600X-Treble.img drive:Share/halium/exynos7870/
